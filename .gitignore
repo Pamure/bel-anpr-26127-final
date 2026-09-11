@@ -1,0 +1,17 @@
+# Large model weights and datasets - download separately
+*.pt
+*.pth
+*.onnx
+*.mp4
+*.avi
+*.mkv
+*.webm
+data/
+models/
+runs/
+__pycache__/
+*.pyc
+.env
+.DS_Store
+node_modules/
+npm-debug.log*
