@@ -1,0 +1,74 @@
+[
+  {
+    "track_id": 1,
+    "vehicle_type": "car",
+    "crops_count": 8,
+    "raw_ocr": "RAR2601",
+    "final_plate": "RAR2601",
+    "confidence": 0.42,
+    "classification": "repaired"
+  },
+  {
+    "track_id": 7,
+    "vehicle_type": "car",
+    "crops_count": 8,
+    "raw_ocr": "M637",
+    "final_plate": "M637",
+    "confidence": 0.082,
+    "classification": "repaired"
+  },
+  {
+    "track_id": 9,
+    "vehicle_type": "car",
+    "crops_count": 8,
+    "raw_ocr": "MV4593",
+    "final_plate": "MV4593",
+    "confidence": 0.325,
+    "classification": "repaired"
+  },
+  {
+    "track_id": 13,
+    "vehicle_type": "truck",
+    "crops_count": 3,
+    "raw_ocr": "NGS1351",
+    "final_plate": "NGS1351",
+    "confidence": 0.714,
+    "classification": "repaired"
+  },
+  {
+    "track_id": 14,
+    "vehicle_type": "car",
+    "crops_count": 7,
+    "raw_ocr": "NGS1351",
+    "final_plate": "NGS1351",
+    "confidence": 0.885,
+    "classification": "repaired"
+  },
+  {
+    "track_id": 16,
+    "vehicle_type": "bike",
+    "crops_count": 2,
+    "raw_ocr": "R2309",
+    "final_plate": "R2309",
+    "confidence": 0.133,
+    "classification": "repaired"
+  },
+  {
+    "track_id": 17,
+    "vehicle_type": "truck",
+    "crops_count": 5,
+    "raw_ocr": "NGS1351",
+    "final_plate": "NGS1351",
+    "confidence": 0.894,
+    "classification": "repaired"
+  },
+  {
+    "track_id": 20,
+    "vehicle_type": "truck",
+    "crops_count": 8,
+    "raw_ocr": "NGS1351",
+    "final_plate": "NGS1351",
+    "confidence": 0.406,
+    "classification": "repaired"
+  }
+]
