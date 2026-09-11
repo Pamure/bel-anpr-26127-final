@@ -1,17 +1,17 @@
 # BEL ANPR 26127 — Working Prototype (SIH 2026)
 
 City-Wide AI Engine for Multi-Camera ANPR Trajectory Tracking and Urban Traffic Analytics.
-Team monorepo unifying: Member-1 edge ANPR (work1/anpr_app lineage), teammate OCR
-(PP-OCRv5 pipeline + india_rules), trajectory/GIS frontend (TraceView lineage), fuzzy
-backend (bel-anpr-backend lineage), and the polished analytics visualization app.
+Team monorepo: Member-1 edge ANPR, teammate OCR (PP-OCRv5 + india_rules), trajectory/GIS frontend (TraceView lineage), fuzzy backend (bel-anpr-backend lineage), analytics visualization app.
+
+**Repository:** https://github.com/Pamure/bel-anpr-26127-prototype
 
 ## Stack
 
 | Layer | Tech | Role |
 |---|---|---|
 | Edge ANPR | YOLO26s vehicle det + fine-tuned plate model, ByteTrack, 8-crop buffer | `backend/src/anpr/` |
-| OCR | PaddleOCR/PP-OCRv5 + EasyOCR fallback + `india_rules` (teammate) OR built-in PaddleOCR path | `backend/src/ocr/` |
-| Multi-frame fusion | ICPR 2026 quality-weighted position voter | `ocr/icpr_voter.py` |
+| OCR | PaddleOCR/PP-OCRv5 + EasyOCR fallback + `india_rules` | `backend/src/ocr/` |
+| Multi-frame fusion | ICPR 2026 quality-weighted position voter | `backend/src/ocr/icpr_voter.py` |
 | API | FastAPI + PostGIS/pg_trgm PostgreSQL, Bearer-key auth | `backend/src/` |
 | Trajectory | OSRM `/match` road snapping (chunks of 100, overlap 9) | `backend/src/services/osrm_client.py` |
 | Frontend | React 18 + Leaflet (Esri dark tiles) + Chart.js | `frontend/` |
@@ -22,8 +22,8 @@ backend (bel-anpr-backend lineage), and the polished analytics visualization app
 ### A. Full stack with real database (recommended — needs Docker)
 ```bash
 cp .env.example .env          # then edit secrets
-docker compose up -d --build  # postgres(:5433) + backend(:8088) + frontend(:5174? port in compose)
-# UI:      http://localhost:5173   (frontend container nginx on :5174 per docker-compose)
+docker compose up -d --build  # postgres(:5433) + backend(:8088) + frontend(:5173)
+# UI:      http://localhost:5173
 # API docs: http://127.0.0.1:8088/docs
 ```
 
@@ -97,3 +97,25 @@ frontend/src/ App (Tactical Command Center), components/*, utils (osrm/trajector
 analytics-app/ vendored teammate analytics UI (React 19 + Leaflet.heat)
 scripts/      run_local, run_all_tests, deploy, verify_yarmuk_isolation
 ```
+
+## IMPORTANT: Large Files (Download Separately)
+
+The following files are **excluded from git** due to GitHub size limits. Download them manually:
+
+| File | Size | Source |
+|------|------|--------|
+| `frontend/public/videos/cam*.mp4` | ~54MB total | Request from team lead or regenerate from CCTV footage |
+| YOLO model weights (`.pt`, `.onnx`) | ~200MB+ | Train via `runs/full/train50/` or download from Ultralytics Hub |
+| Conda env (`work1/anpr-env/`) | ~2GB | Use `environment.yml` or `requirements.txt` to recreate |
+
+**To regenerate test videos:** See `work1/cctv_footage/README.md` for the reproduction recipe.
+
+## Technical Achievement Guide
+
+See **`TECHNICAL_GUIDE.md`** for the complete documentation covering:
+- Full pipeline architecture (detection → tracking → OCR → alerts → trajectory → analytics)
+- Benchmark results (mAP50 = 99.12%, OCR read rate 94% on live CCTV)
+- Database schema details
+- API reference for all endpoints
+- Real deployment status on yarmuk infrastructure
+- SIH judge talking points and differentiator narrative
